@@ -8,5 +8,6 @@
   <modules>
   	<module>wechat-dev-parent</module>
   	<module>wechat-dev-example</module>
+  	<module>wechat-dev-eshop</module>
   </modules>
 </project>

@@ -35,7 +35,7 @@ public class CoreServlet extends HttpServlet {
 		try {
 			out = response.getWriter();
 			// 请求校验，若校验成功则原样返回echostr，表示接入成功，否则接入失败
-			if (SignUtil.checkSignature(signature, timestamp, nonce)) {
+			if (SignUtil.checkSignature(signature, SignUtil.WEIXIN_TOKEN, timestamp, nonce)) {
 				out.print(echostr);
 			}
 		} catch (IOException e) {
@@ -60,22 +60,33 @@ public class CoreServlet extends HttpServlet {
 			e1.printStackTrace();
 		}
 
-		// 调用核心业务类接收消息、处理消息
-		String respXml = CoreService.processRequest(request);
-		PrintWriter out = null;
-		try {
-			out = response.getWriter();
-			// 响应消息
-			if (StringUtils.isNotBlank(respXml)) {
-				out.print(respXml);
+		// 微信加密签名
+		String signature = request.getParameter("signature");
+		// 时间戳
+		String timestamp = request.getParameter("timestamp");
+		// 随机数
+		String nonce = request.getParameter("nonce");
+		// 请求校验，若校验成功则原样返回echostr，表示接入成功，否则接入失败
+		if (SignUtil.checkSignature(signature, SignUtil.WEIXIN_TOKEN, timestamp, nonce)) {
+			// 调用核心业务类接收消息、处理消息
+			String respXml = CoreService.processRequest(request);
+			PrintWriter out = null;
+			try {
+				out = response.getWriter();
+				// 响应消息
+				if (StringUtils.isNotBlank(respXml)) {
+					out.print(respXml);
+				}
+			} catch (IOException e) {
+				e.printStackTrace();
+			} finally {
+				if (out != null) {
+					out.close();
+				}
 			}
-		} catch (IOException e) {
-			e.printStackTrace();
-		} finally {
-			if (out != null) {
-				out.close();
-			}
+
 		}
+
 	}
 
 }
