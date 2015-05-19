@@ -64,8 +64,8 @@ public class CoreService {
 				if (StringUtils.isNotBlank(eventKey) && eventKey.equals("bind_user")) {
 					Map<String, String> signatureMap = SignUtil.generateSignature(SignUtil.ESHOP_TOKEN);
 					String bindUrl = baseBindUrl + "signature=" + signatureMap.get("signature") + "&timestamp="
-							+ signatureMap.get("timestamp") + "&nonce=" + signatureMap.get("nonce") + "&OpenID=" + fromUserName;
-					textMessage.setContent("哎呦呦，客观，您还没有绑定账户哦！<a href='" + bindUrl + "'>点击绑定<a>，就可以购买了");
+							+ signatureMap.get("timestamp") + "&nonce=" + signatureMap.get("nonce") + "&openID=" + fromUserName;
+					textMessage.setContent("哎呦呦，客观，您还没有绑定账户哦！<a href='" + bindUrl + "'>点击绑定</a>，就可以购买了");
 					respXml = MessageUtil.messageToXml(textMessage);
 				}
 			}

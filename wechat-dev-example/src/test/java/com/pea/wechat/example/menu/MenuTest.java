@@ -22,7 +22,7 @@ public class MenuTest {
 		String appSecret = "da84e10c4c742cc7fac7acdd20ea1ee5";
 		token = new Token();
 
-		token.setAccessToken("jTiHMRq4ZtWnufnOYT-nXgYyK9Dkgzyn18K4u_jMQUw9Ci7wTt7cCkKRjAbjjSEIFKT0yhlfQr8wEqF-KtPEsTZsQCvf8aYM0toSuZJAciA");
+		token.setAccessToken("NblFqpOvsq67p4qKWAIQvFbrfQM-U62C335UbwIwa1kG3tMRNd9uL2wfNXxoqtfJLPs4Aa2PplwuplZ2VYSI2G8ByiEkmjB4aFJ6kpu-_KU");
 		token.setExpiresIn(7200);
 
 		// 调用接口获取凭证
@@ -56,14 +56,19 @@ public class MenuTest {
 		btn11.setKey("jjhs");
 
 		ClickButton btn21 = new ClickButton();
-		btn21.setName("账户绑定");
+		btn21.setName("账户绑定1");
 		btn21.setType("click");
 		btn21.setKey("bind_user");
 
 		ViewButton btn22 = new ViewButton();
-		btn22.setName("进入首页");
+		btn22.setName("账户绑定2");
 		btn22.setType("view");
 		btn22.setUrl("http://wechat-shop.aliapp.com/user/list");
+
+		ViewButton btn23 = new ViewButton();
+		btn23.setName("进入首页");
+		btn23.setType("view");
+		btn23.setUrl("http://wechat-shop.aliapp.com/user/list");
 
 		ViewButton btn31 = new ViewButton();
 		btn31.setName("E购币");
@@ -76,7 +81,7 @@ public class MenuTest {
 
 		ComplexButton mainBtn2 = new ComplexButton();
 		mainBtn2.setName("自助服务");
-		mainBtn2.setSub_button(new Button[] { btn21, btn22 });
+		mainBtn2.setSub_button(new Button[] { btn21, btn22, btn23 });
 
 		ComplexButton mainBtn3 = new ComplexButton();
 		mainBtn3.setName("产品");
