@@ -5,6 +5,7 @@ import net.sf.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.pea.wechat.example.constant.WeiXinApiUrl;
 import com.pea.wechat.example.menu.Menu;
 
 /**
@@ -13,12 +14,6 @@ import com.pea.wechat.example.menu.Menu;
  */
 public class MenuUtil {
 	private static Logger logger = LoggerFactory.getLogger(MenuUtil.class);
-	// 菜单创建（POST）
-	public final static String menu_create_url = "https://api.weixin.qq.com/cgi-bin/menu/create?access_token=ACCESS_TOKEN";
-	// 菜单查询（GET）
-	public final static String menu_get_url = "https://api.weixin.qq.com/cgi-bin/menu/get?access_token=ACCESS_TOKEN";
-	// 菜单删除（GET）
-	public final static String menu_delete_url = "https://api.weixin.qq.com/cgi-bin/menu/delete?access_token=ACCESS_TOKEN";
 
 	/**
 	 * 创建菜单
@@ -31,7 +26,7 @@ public class MenuUtil {
 	 */
 	public static boolean createMenu(Menu menu, String accessToken) {
 		boolean result = false;
-		String url = menu_create_url.replace("ACCESS_TOKEN", accessToken);
+		String url = WeiXinApiUrl.MENU_CREATE_URL.replace("ACCESS_TOKEN", accessToken);
 		// 将菜单对象转换成json字符串
 		String jsonMenu = JSONObject.fromObject(menu).toString();
 		// 发起POST请求创建菜单
@@ -60,7 +55,7 @@ public class MenuUtil {
 	 */
 	public static String getMenu(String accessToken) {
 		String result = null;
-		String requestUrl = menu_get_url.replace("ACCESS_TOKEN", accessToken);
+		String requestUrl = WeiXinApiUrl.MENU_GET_URL.replace("ACCESS_TOKEN", accessToken);
 		// 发起GET请求查询菜单
 		JSONObject jsonObject = CommonUtil.httpsRequest(requestUrl, "GET", null);
 
@@ -79,7 +74,7 @@ public class MenuUtil {
 	 */
 	public static boolean deleteMenu(String accessToken) {
 		boolean result = false;
-		String requestUrl = menu_delete_url.replace("ACCESS_TOKEN", accessToken);
+		String requestUrl = WeiXinApiUrl.MENU_DELETE_URL.replace("ACCESS_TOKEN", accessToken);
 		// 发起GET请求删除菜单
 		JSONObject jsonObject = CommonUtil.httpsRequest(requestUrl, "GET", null);
 

@@ -8,21 +8,22 @@ import org.slf4j.LoggerFactory;
 
 import com.pea.wechat.example.pojo.Token;
 import com.pea.wechat.example.util.MenuUtil;
+import com.pea.wechat.example.util.OAuthUtil;
 
 public class MenuTest {
 	private static Logger logger = LoggerFactory.getLogger(MenuTest.class);
 	private Token token = null;
+	private String appId = "wx91d907fab52860b0";
 
 	@Before
 	public void prepare() {
 
 		// 第三方用户唯一凭证
-		String appId = "wx91d907fab52860b0";
 		// 第三方用户唯一凭证密钥
 		String appSecret = "da84e10c4c742cc7fac7acdd20ea1ee5";
 		token = new Token();
 
-		token.setAccessToken("NblFqpOvsq67p4qKWAIQvFbrfQM-U62C335UbwIwa1kG3tMRNd9uL2wfNXxoqtfJLPs4Aa2PplwuplZ2VYSI2G8ByiEkmjB4aFJ6kpu-_KU");
+		token.setAccessToken("U8PROJqw7EItpmiID8Al575zBScckEQ94Q5scLk7gx0CNv_bIFNyWLiAVii_zeD59GcdjbL_Y4ti1-Q8NELnl3rkqV8Q-Dqb-QFCNUI4eN0");
 		token.setExpiresIn(7200);
 
 		// 调用接口获取凭证
@@ -63,7 +64,8 @@ public class MenuTest {
 		ViewButton btn22 = new ViewButton();
 		btn22.setName("账户绑定2");
 		btn22.setType("view");
-		btn22.setUrl("http://wechat-shop.aliapp.com/user/list");
+		String bindUrl = OAuthUtil.getOauth2CodeUrl(appId, "http://wechat-shop.aliapp.com/user/bind", "snsapi_base");
+		btn22.setUrl(bindUrl);
 
 		ViewButton btn23 = new ViewButton();
 		btn23.setName("进入首页");
